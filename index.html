@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="css/jquerymobile/jquery.mobile-1.2.0.css" />
+        <link rel="stylesheet" href="css/toast/jquery.toastmessage.css" />          
+        
+		
+		
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>		
+
+        <script type="text/javascript" charset="utf-8" src="js/jquery/jquery-1.8.3.js"></script>
+		
+		<!--<script type="text/javascript" charset="utf-8" src="js/royce/imei.js"></script>-->
+		
+		<script type="text/javascript" charset="utf-8" src="js/utility/UiBlock.js"></script>
+		
+				
+		
+		
+		<script type="text/javascript" charset="utf-8" src="js/toast/jquery.toastmessage.js"></script>	   
+       
+	    <script type="text/javascript" src="js/index.js"></script>
+       
+        <script type="application/javascript">
+			
+			var userAgent = navigator.userAgent + '';
+			if( (userAgent.indexOf('iPhone') > -1) || (userAgent.indexOf('iPad') > -1) ){var deviceType = 'ios';var isDevice = true;}
+			else if(userAgent.indexOf('Android') > -1){var deviceType = 'android';var isDevice = true;}
+			else{// device is web browser
+				var deviceType = 'web_browser';
+				
+				//alert(deviceType);
+				
+				// isDevice
+				var isDevice = false;
+				}
+        
+		
+		</script>
+        
+        
+		
+  		
+		<script type="text/javascript" charset="utf-8" src="js/royce/common_functions.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/royce/synch.js"></script>
+		<script type="text/javascript" charset="utf-8" src="js/royce/work_functions.js"></script>
+		
+		
+		<!-- jquery mobile script starts -->
+        <script type="text/javascript">
+        $(document).bind("mobileinit", function () {
+			$.mobile.defaultPageTransition = 'none';
+		});
+		</script>
+        
+		<script type="text/javascript" charset="utf-8" src="js/jquerymobile/utility.js"></script>
+	
+		
+		<script type="text/javascript" charset="utf-8" src="js/jquerymobile/jquery.mobile-1.2.0.js"></script>
+        <!-- jquery mobile script ends --> 
+        <title>Royce</title>
+		<style>
+		#leaveDay{
+				width:140px;
+				margin-left:65px;
+				margin-top:-36px;
+				position:relative;
+				}
+	</style>
+    </head>
+    
+    <body>
+		<input type="hidden" id="curentPageId" name="curentPageId" value="" />		
+		<div data-role="page" id="Registrationpage">
+        	<div class="header">Register</div>
+			<div align="center"><img src="img/rsale_logo.png" /></div>
+            <div class="formContain content_top_bg ui-content">
+                <div class="ui-field-contain ui-body ui-br">
+                    <label class="ui-input-text">Username</label>
+                    <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="login_rg" autofocus/>
+                </div>
+                <div class="ui-field-contain ui-body ui-br">
+                    <label class="ui-input-text">Password</label>
+                    <input type="password" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="pass_rg"/>
+                </div> 
+				<div class="buttonContionDiv" align="center">     
+                	<input class="regiterSubmit" type="submit" value="" aria-disabled="false" onClick="RegisterUser();">
+				</div>
+            </div>
+			<div id="footer">
+			<span class="showversion" style="float:right"></span>
+			<a href="#" onClick="pinPage()" style="float:left">proceed to pinvalidate</a>
+        	</div>	
+		</div>
+		
+		<div data-role="page" id="Pin_Varificationpage">
+        	<div class="header">Pin Validation</div>
+			<div align="center"><img src="img/rsale_logo.png" /></div>
+            <div class="formContain content_top_bg ui-content">
+                <div class="ui-field-contain ui-body ui-br">
+                    <label class="ui-input-text">Username</label>
+                    <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="pin_user" autofocus/>
+                </div>
+                <div class="ui-field-contain ui-body ui-br">
+                    <label class="ui-input-text">Password</label>
+                    <input type="password" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="pin_pass"/>
+                </div>
+				<div class="ui-field-contain ui-body ui-br">
+                    <label class="ui-input-text">Pin</label>
+                    <input type="password" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="pin_code"/>
+                </div> 
+				<div class="buttonContionDiv" align="center">     
+                	<input class="pinvarificationSubmit" type="submit" value="" aria-disabled="false" onClick="pinverification();">
+				</div>
+            </div>
+			<div id="footer">
+			<span class="showversion" style="float:right"></span>
+			<a href="#" onClick="pinPageRg()" style="float:left">Back to Regitration</a>
+			</div>
+        </div>
+		
+    	<div data-role="page" id="loginPage">
+        	<div class="header">Login</div>
+			<div align="center"><img src="img/rsale_logo.png" /></div>
+            <div class="formContain content_top_bg ui-content">
+                <div class="ui-field-contain ui-body ui-br">
+                    <label class="ui-input-text">Username</label>
+                    <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="login" name="login" autofocus/>
+                </div>
+                <div class="ui-field-contain ui-body ui-br">
+                    <label class="ui-input-text">Password</label>
+                    <input type="password" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="pass" name="pass" />
+                </div> 
+				<div class="buttonContionDiv" align="center">     
+                <p align="center">	<input class="loginSubmit" type="submit" value="" aria-disabled="false" onClick="doLogin();"></p>
+				</div>
+            </div>
+			<span class="showversion" style="float:right"></span>
+        </div>
+               <div data-role="page" id="punchPage">
+        	<div class="header">Punch Attendance</div>
+            <div class="formContain content_top_bg ui-content">
+                <div class="formContainDiv formContainDivNext">
+					<input type="radio" name="pl" value="PL"/><label>PL</label>
+					<input type="text" name="Attendance" id="leaveDay" placeholder="No Of Leave Days"/><br /><br />
+					<input type="radio" name="pl" value="SL"/><label>SL</label><br /><br />
+                    <input type="radio" name="pl" value="CL"/><label>CL</label><br /><br />
+                    <input type="radio" name="pl" value="PRESENT"/><label>PRESENT</label><br /><br />
+					<input type="radio" name="pl" value="HOLIDAY"/><label>HOLIDAY</label><br />
+                    <div style="clear:both;"></div>
+					<div class="buttonContionDiv" align="center">     
+						<input class="punchSubmit" type="submit" value="" aria-disabled="false" onClick=" return punchAttendance_by_Btn();">
+					</div>  
+                </div>
+            </div>
+			<div data-role="footer">
+			<span class="showversion" style="float:right"></span>
+			</div>
+        </div>
+        
+        <div data-role="page" id="menuPage">
+        	<div class="header">HOME</div>
+            <div class="formContain content_top_bg ui-content">
+            	<div class="ui-field-contain ui-body ui-br formContainDiv">
+                	<img src="img/dv.png" class="img" onClick="UpdateDoctorInfo()"/>
+                    <img src="img/cv.png" class="img" onClick="UpdateChemistInfo()"/>
+                </div>
+				<div class="ui-field-contain ui-body ui-br formContainDiv">
+                	<img src="img/cme.png" class="img" onClick="ChangePage_pv_ps()"/>
+                    <img src="img/endofday_new.png" class="img" onClick="EndOfDay();"/>
+                </div>
+                <!--div class="ui-field-contain ui-body ui-br formContainDiv" id="hide_pv_ps">
+                	<img src="img/pv.png" class="img" onClick="updatePocketDetail()"/>
+                    <img src="img/ps.png" class="img" onClick="upadteParamedicDetail()"/>
+                </div-->
+               	<div class="menuButton" align="center">
+					<!--input type="submit" aria-disabled="false" value="" class="endSubmit" onClick="return EndOfDay();"-->
+               		<input type="submit" aria-disabled="false" class="logoutSubmit" onClick="return logOut();" value="">
+					<div class="clearBoth"></div>
+				</div>
+            </div>
+			<div data-role="footer">
+			<span class="showversion" style="float:right"></span>
+			</div>
+        </div>
+       <!---*********************************************************************************************-->
+	   <div data-role="page" id="menuPage_cme">
+           <div class="header">CME	   		
+				<!--<input type="submit" aria-disabled="false" value="" class="homeSubmit"  onClick="homeidback()">
+				<p style="margin-left:45%; margin-right:48%; margin-top:-1.5px;"><span>CME</span></p>-->
+		   </div>
+		   <div align="center"><img src="img/rsale_logo.png" /></div>
+           <div class="formContain content_top_bg ui-content">
+            	<div class="ui-field-contain ui-body ui-br formContainDiv" id="hide_pv_ps">
+                	<img src="img/pv.png" class="img" onClick="updatePocketDetail()"/>
+                    <img src="img/ps.png" class="img" onClick="upadteParamedicDetail()"/>
+                </div>
+           </div>
+       </div>
+
+	   <!--***********************************************************************************************--> 
+        <div data-role="page" id="listPage">
+        	<div class="header headerTable">
+				<input type="submit" aria-disabled="false" value="" class="syncSubmit"  onClick="synchData()">
+				<span id="tableheader" style="font-size:12px; font-weight:bold"></span>
+				<input type="submit" aria-disabled="false" value="" id="add_Btn" class="addSubmit" onClick="addUser_All();">
+				<div class="clearBoth"></div>	
+			</div>
+            <div class="formContain_listpage" id="Flist">            	
+                <!--<input type="submit" aria-disabled="false" value="Synchronize" class="ui-btn-hidden">formContain content_top_bg ui-content-->
+            </div>
+        </div>
+        
+        <div data-role="page" id="editPage_doctor">
+        	<div class="header">
+			<span id="header_dr"></span>
+			</div>
+            <div class="formContain content_top_bg ui-content">            	
+                    <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="location_doc">Location</label>
+                        <select name="select-choice-1" data-role="listview" id="edit_location_doc">
+						</select>
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="name_doc">Name</label>
+                        <select name="select-choice-1" data-role="listview" id="edit_name_doc">
+						</select>
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="ui-field-contain ui-body ui-br" id="ecndoc">
+                        <label class="ui-input-text">ECN</label>
+                        <select name="" id="slider_ecn_doc" data-role="slider" class="rightone_bg ui-slider-switch">
+                          	<option id="s" value="No">No</option>
+                            <option id="s1" value="Yes">Yes</option>
+                        </select>
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="ui-field-contain ui-body ui-br" id="eifdoc">
+                        <label class="ui-input-text">EIF</label>
+                        <select name="" id="slider_eif_doc" data-role="slider" class="rightone_bg ui-slider-switch">
+                            <option id="d" value="No">No</option>
+                            <option id="d1" value="Yes">Yes</option>
+                        </select>
+						<div class="clearBoth"></div>
+                    </div>				
+			        <div class="ui-field-contain ui-body ui-br" id="add_nxt_field_doc">
+                      
+						<div class="clearBoth"></div>
+                    </div>
+					<div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text">Remark</label>
+                        <input type="text" placeholder="Remark" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="edit_remark"/>
+						<div class="clearBoth"></div>
+                    </div>
+
+                    <div class="buttonContionDiv" align="center">     
+						<input class="updateSubmit" type="submit" value="" aria-disabled="false" onClick="selectForUpdate();">
+					</div>           
+            </div>
+        </div>
+<!--------------------------------------------------Chemist----------------------------->
+		<div data-role="page" id="editPage_chemist">
+        	<div class="header">
+			<span id="header_ch"></span>
+			</div>
+            <div class="formContain content_top_bg ui-content">            	
+                    <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="location_ch">Location</label>
+                        <select name="select-choice-1" data-role="listview" id="edit_location_ch">
+						</select>
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="name_ch">Name</label>
+                        <select name="select-choice-1" data-role="listview" id="edit_name_ch">
+						</select>
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="ui-field-contain ui-body ui-br" id="ecn_slider">
+                        <label class="ui-input-text">ECN</label>
+                        <select name="" id="slider_ecn_ch" data-role="slider" class="rightone_bg ui-slider-switch">
+                            <option id="ecn_ch_no" value="NO">No</option>
+                            <option id="ecn_ch_yes" value="Yes">Yes</option>
+                        </select>
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="ui-field-contain ui-body ui-br" id="eif_slider">
+                        <label class="ui-input-text">EIF</label>
+                        <select name="" id="slider_eif_ch" data-role="slider" class="rightone_bg ui-slider-switch">
+                            <option id="eif_ch_no" value="No">No</option>
+                            <option id="eif_ch_yes" value="Yes">Yes</option>
+                        </select>
+						<div class="clearBoth"></div>
+                    </div>
+					<div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text">OB Qty CN</label>
+                        <input type="number" placeholder="" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="edit_obqtycn" onKeyUp="chemistobqty_cn()"/>
+						<div class="clearBoth"></div>
+                    </div>
+					<div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text">OB Qty IF</label>
+                        <input type="number" placeholder="" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="edit_obqtyif" onKeyUp="chemistobqty_cn()"/>
+						<div class="clearBoth"></div>
+                    </div>
+					<div class="ui-field-contain ui-body ui-br" id="outletshow">
+                        <label class="ui-input-text">Best Start Outlet</label>
+                        <select name="" id="slider_outlet" data-role="slider" class="rightone_bg ui-slider-switch">
+                            <option id="outlet_no" value="No">No</option>
+                            <option id="outlet_yes" value="Yes">Yes</option>
+                        </select>
+						<div class="clearBoth"></div>
+                    </div>
+					<div class="ui-field-contain ui-body ui-br" id="qualityshow">
+                        <label class="ui-input-text">Quality of Visibility</label>
+                        <select name="" id="slider_quality" data-role="slider" class="rightone_bg ui-slider-switch">
+                            <option id="quality_g" value="Good">Good</option>
+                            <option id="quality_b" value="Bad">Bad</option>
+                        </select>
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="ui-field-contain ui-body ui-br" id="add_nxt_field_ch">
+                        <!--label class="ui-input-text">Remark</label>
+                        <input type="text" placeholder="Remark" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="edit_remark"/-->
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="buttonContionDiv" align="center">     
+						<input class="updateSubmit" type="submit" value="" aria-disabled="false" onClick="selectForUpdate();">
+					</div>                 
+            </div>
+			
+        </div>
+
+<!-----------------------------------packet------------------------------------------------------------------------>
+		 <div data-role="page" id="editPage_pocket">
+        	<div class="header">
+			<span id="header_pv"></span>
+			</div>
+            <div class="formContain content_top_bg ui-content">            	
+                    <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="institute_pct">Institute Name</label>
+                        <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="institute_nm"/>
+						<div class="clearBoth"></div>
+                    </div>
+					<div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="tatal_pct">Total Enlisted HCP participants</label>
+                        <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="total_en"/>
+						<div class="clearBoth"></div>
+                    </div>
+					<div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="name_pct">Total HCP participants</label>
+                        <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="total_hcp"/>
+						<div class="clearBoth"></div>
+                    </div>
+					 <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="name_pct">Cost Of Event</label>
+                        <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="cost"/>
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="name_pct">Topic Name</label>
+                        <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="topic_nm"/>
+						<div class="clearBoth"></div>
+                    </div>
+                    <!--<div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text">ECN</label>
+                        <select name="" id="slider_ecn_pct" data-role="slider" class="rightone_bg ui-slider-switch">
+                            <option value="NO">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text">EIF</label>
+                        <select name="" id="slider_eif_pct" data-role="slider" class="rightone_bg ui-slider-switch">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+						<div class="clearBoth"></div>
+                    </div>-->
+                    <div class="ui-field-contain ui-body ui-br" id="add_nxt_field_pct">
+                        <!--label class="ui-input-text">Remark</label>
+                        <input type="text" placeholder="Remark" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="edit_remark"/-->
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="buttonContionDiv" align="center">     
+						<input class="updateSubmit" type="submit" value="" aria-disabled="false" onClick="selectForUpdate();">
+					</div>                  
+            </div>
+        </div>
+<!----------------------------paramedic--------------------------->
+		 <div data-role="page" id="editPage_paramedic">
+        	<div class="header">
+			<span id="header_ps"></span>
+			</div>
+            <div class="formContain content_top_bg ui-content">            	
+                   	<div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="name_ps">Institute Name</label>
+                        <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="institute_nm_ps"/>
+						<div class="clearBoth"></div>
+                   	</div>
+					 <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="name_ps">Paramedic Session Name</label>
+                        <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="name_ps_txt" name="nameps" />
+						<div class="clearBoth"></div>
+                    </div>
+					<div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="location_ps">Location</label>
+                        <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="location_ps_txt" name="locationps" />
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="name_ps">Total Paramedic participants</label>
+                        <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="total_part" name="total_participants" />
+						<div class="clearBoth"></div>
+                    </div>
+					<div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text" id="name_ps">Cost Of Event</label>
+                        <input type="text" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="cost_event" name="costofevent" />
+						<div class="clearBoth"></div>
+                    </div>
+					
+                   <!-- <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text">ECN</label>
+                        <select name="" id="slider_ecn_ps" data-role="slider" class="rightone_bg ui-slider-switch">
+                            <option value="NO">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="ui-field-contain ui-body ui-br">
+                        <label class="ui-input-text">EIF</label>
+                        <select name="" id="slider_eif_ps" data-role="slider" class="rightone_bg ui-slider-switch">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+						<div class="clearBoth"></div>
+                    </div>-->
+                    <div class="ui-field-contain ui-body ui-br" id="add_nxt_field_ps">
+                        <!--label class="ui-input-text">Remark</label>
+                        <input type="text" placeholder="Remark" class="input_text ui-input-text ui-body-c ui-corner-all ui-shadow-inset" id="edit_remark"/-->
+						<div class="clearBoth"></div>
+                    </div>
+                    <div class="buttonContionDiv" align="center">     
+						<input class="updateSubmit" type="submit" value="" aria-disabled="false" onClick="selectForUpdate();">
+					</div>                 
+            </div>
+        </div>
+		
+    </body>
+</html>
